@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
     @Query(
     value=
         "SELECT " +
-            "C.custom_number as customerNumber, " +
+            "C.customer_number as customerNumber, " +
             "C.name as name, " +
             "C.birth as birth, " +
             "C.location as location, " +
@@ -26,7 +26,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
             "N.user_id as chargerId " +
         "FROM customers C LEFT JOIN nurses N " +
         "ON C.charger = N.user_Id " +
-        "ORDER BY C.custom_number DESC ",
+        "ORDER BY C.customer_number DESC ",
     nativeQuery=true
     )
     List<GetCustomersResultSet> getCustomers();
@@ -34,7 +34,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
     @Query(
     value=
     "SELECT " +
-            "C.custom_number as customerNumber, " +
+            "C.customer_number as customerNumber, " +
             "C.profile_image as profileImage, " +
             "C.name as name, " +
             "C.birth as birth, " +
@@ -43,7 +43,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
             "C.address as address "+
         "FROM customers C LEFT JOIN nurses N " +
         "ON C.charger = N.user_id " +
-        "WHERE C.custom_number = :customerNumber ",
+        "WHERE C.customer_number = :customerNumber ",
     nativeQuery=true
     )
     GetCustomerResultSet getCustomer(@Param("customerNumber") Integer customerNumber);
